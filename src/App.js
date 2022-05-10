@@ -5,7 +5,7 @@ import Row from './Row';
 function App() {
   return (
     <div className="App">
-      <div className="header">efefef
+      <div className="header">
         <div className="header__left">
           <a href="#">Menu</a>
           <a href="#">Rules</a>
