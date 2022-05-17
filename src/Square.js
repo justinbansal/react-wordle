@@ -1,6 +1,10 @@
-function Square() {
+function Square(props) {
+  const { position, squares } = props;
+
   return (
-    <div className="square"></div>
+    <div className="square">
+      {squares ? squares[position] : null}
+    </div>
   )
 }
 
