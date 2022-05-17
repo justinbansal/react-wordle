@@ -4,7 +4,7 @@ function Row(props) {
   const { indexes, squares } = props;
   const tiles = indexes.map(index => {
     return <Square
-            key={index}
+            key={`Square${index}`}
             position={index}
             squares={squares}
           />

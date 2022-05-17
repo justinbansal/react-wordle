@@ -37,20 +37,12 @@ class App extends React.Component {
     super();
     this.state = {
       firstGuess: [],
-      secondGuess: '',
-      thirdGuess: '',
-      fourthGuess: '',
-      fifthGuess: '',
-      squares: Array(30).fill(null),
-      rows: [
-        Array(5).fill(null),
-        Array(5).fill(null),
-        Array(5).fill(null),
-        Array(5).fill(null),
-        Array(5).fill(null),
-      ],
-      key: null,
-      string: '',
+      secondGuess: [],
+      thirdGuess: [],
+      fourthGuess: [],
+      fifthGuess: [],
+      sixthGuess: [],
+      string: [],
       level: 0,
     }
 
@@ -58,20 +50,66 @@ class App extends React.Component {
   }
 
   handleKeyboard(e) {
+    if (e.keyCode === 13 && this.state.string.length === 5) {
+      if (this.state.string === 'house') {
+        console.log('winner');
+      } else {
+        console.log('loser');
+        this.setState({
+          level: this.state.level + 1,
+          string: [],
+        })
+      }
+    }
+
     if (letters.includes(e.key.toUpperCase())) {
-      const firstGuess = [...this.state.firstGuess];
-      if (firstGuess.length < 5) {
-        firstGuess.push(e.key.toUpperCase());
+      if (this.state.string.length < 5) {
+        this.state.string.push(e.key.toUpperCase());
       }
 
-      this.setState({
-        firstGuess,
-      })
+      if (this.state.level === 0) {
+        this.setState({
+          firstGuess: this.state.string,
+        })
+      }
+
+      if (this.state.level === 1) {
+        this.setState({
+          secondGuess: this.state.string,
+        })
+      }
+
+      if (this.state.level === 2) {
+        this.setState({
+          thirdGuess: this.state.string,
+        })
+      }
+
+      if (this.state.level === 3) {
+        this.setState({
+          fourthGuess: this.state.string,
+        })
+      }
+
+      if (this.state.level === 4) {
+        this.setState({
+          fifthGuess: this.state.string,
+        })
+      }
+
+      if (this.state.level === 5) {
+        this.setState({
+          sixthGuess: this.state.string,
+        })
+      }
     }
   }
 
   componentDidMount() {
-    document.addEventListener('keydown', this.handleKeyboard)
+    this.setState({
+      string: [],
+    })
+    document.addEventListener('keydown', this.handleKeyboard);
   }
 
   componentWillUnmount() {
@@ -100,23 +138,23 @@ class App extends React.Component {
             squares={this.state.firstGuess}
           />
           <Row
-            indexes={[5, 6, 7, 8, 9]}
+            indexes={[0, 1, 2, 3, 4]}
             squares={this.state.secondGuess}
           />
           <Row
-            indexes={[10, 11, 12, 13, 14]}
+            indexes={[0, 1, 2, 3, 4]}
             squares={this.state.thirdGuess}
           />
           <Row
-            indexes={[15, 16, 17, 18, 19]}
+            indexes={[0, 1, 2, 3, 4]}
             squares={this.state.fourthGuess}
           />
           <Row
-            indexes={[20, 21, 22, 23, 24]}
+            indexes={[0, 1, 2, 3, 4]}
             squares={this.state.fifthGuess}
           />
           <Row
-            indexes={[25, 26, 27, 28, 29]}
+            indexes={[0, 1, 2, 3, 4]}
             squares={this.state.sixthGuess}
           />
         </div>
