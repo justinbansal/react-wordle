@@ -6,6 +6,8 @@ function Row(props) {
   let status;
   if (squares.length > 0 && id !== level) {
     status = 'row--guess-entered';
+  } else {
+    status = 'row--guess-not-entered';
   }
 
   const tiles = indexes.map(index => {

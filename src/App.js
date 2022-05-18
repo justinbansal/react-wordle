@@ -2,6 +2,7 @@ import './App.scss';
 
 import React from 'react';
 import Row from './Row';
+import Modal from './Modal';
 
 const letters = [
   'A',
@@ -45,12 +46,18 @@ class App extends React.Component {
       sixthGuess: [],
       string: [],
       level: 0,
+      showModal: false,
     }
 
     this.handleKeyboard = this.handleKeyboard.bind(this);
+    this.showModal = this.showModal.bind(this);
   }
 
   handleKeyboard(e) {
+    if (e.keyCode === 13 && this.state.string.length < 5) {
+      this.showModal();
+    }
+
     if (e.keyCode === 13 && this.state.string.length === 5) {
       const guess = this.state.string.join('');
 
@@ -109,6 +116,18 @@ class App extends React.Component {
         })
       }
     }
+  }
+
+  showModal() {
+    this.setState({
+      showModal: true,
+    })
+
+    setTimeout(() => {
+      this.setState({
+        showModal: false
+      })
+    }, 2000)
   }
 
   componentDidMount() {
@@ -181,6 +200,7 @@ class App extends React.Component {
             wordle={wordle}
             level={this.state.level}
           />
+          <Modal showModal={this.state.showModal}></Modal>
         </div>
         <div className="keyboard">
 
