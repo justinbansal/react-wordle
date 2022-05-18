@@ -54,6 +54,53 @@ class App extends React.Component {
   }
 
   handleKeyboard(e) {
+    if (e.keyCode === 8 && this.state.string.length > 0) {
+
+      const string = this.state.string.slice();
+      string.pop();
+
+      this.setState({
+        string: string,
+      })
+
+      if (this.state.level === 0) {
+        this.setState({
+          firstGuess: string,
+        })
+      }
+
+      if (this.state.level === 1) {
+        this.setState({
+          secondGuess: string,
+        })
+      }
+
+      if (this.state.level === 2) {
+        this.setState({
+          thirdGuess: string,
+        })
+      }
+
+      if (this.state.level === 3) {
+        this.setState({
+          fourthGuess: string,
+        })
+      }
+
+      if (this.state.level === 4) {
+        this.setState({
+          fifthGuess: string,
+        })
+      }
+
+      if (this.state.level === 5) {
+        this.setState({
+          sixthGuess: string,
+        })
+      }
+    }
+
+
     if (e.keyCode === 13 && this.state.string.length < 5) {
       this.showModal();
     }
