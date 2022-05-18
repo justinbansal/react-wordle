@@ -45,6 +45,21 @@ html {
   margin: 3px;
   border: 2px solid #D3D3D3;
   font-size: 3rem;
+
+  &--correct-position {
+    background-color: rgb(106, 170, 100);
+    color: #fff;
+  }
+
+  &--incorrect-position {
+    background-color: rgb(201, 180, 88);
+    color: #fff;
+  }
+
+  &--no-match {
+    background-color: rgb(120, 124, 126);
+    color: #fff;
+  }
 }
 
 .clicked {

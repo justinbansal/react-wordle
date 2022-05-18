@@ -7,6 +7,7 @@ function Row(props) {
             key={`Square${index}`}
             position={index}
             squares={squares}
+            wordle={props.wordle}
           />
   })
 

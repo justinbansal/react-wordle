@@ -2,7 +2,6 @@ import './App.scss';
 
 import React from 'react';
 import Row from './Row';
-import Square from './Square';
 
 const letters = [
   'A',
@@ -32,6 +31,8 @@ const letters = [
   'Z',
 ]
 
+const wordle = 'HOUSE';
+
 class App extends React.Component {
   constructor() {
     super();
@@ -51,7 +52,8 @@ class App extends React.Component {
 
   handleKeyboard(e) {
     if (e.keyCode === 13 && this.state.string.length === 5) {
-      if (this.state.string === 'house') {
+      const guess = this.state.string.join('');
+      if (guess === 'house') {
         console.log('winner');
       } else {
         console.log('loser');
@@ -59,6 +61,8 @@ class App extends React.Component {
           level: this.state.level + 1,
           string: [],
         })
+
+        console.log(guess);
       }
     }
 
@@ -136,26 +140,32 @@ class App extends React.Component {
           <Row
             indexes={[0, 1, 2, 3, 4]}
             squares={this.state.firstGuess}
+            wordle={wordle}
           />
           <Row
             indexes={[0, 1, 2, 3, 4]}
             squares={this.state.secondGuess}
+            wordle={wordle}
           />
           <Row
             indexes={[0, 1, 2, 3, 4]}
             squares={this.state.thirdGuess}
+            wordle={wordle}
           />
           <Row
             indexes={[0, 1, 2, 3, 4]}
             squares={this.state.fourthGuess}
+            wordle={wordle}
           />
           <Row
             indexes={[0, 1, 2, 3, 4]}
             squares={this.state.fifthGuess}
+            wordle={wordle}
           />
           <Row
             indexes={[0, 1, 2, 3, 4]}
             squares={this.state.sixthGuess}
+            wordle={wordle}
           />
         </div>
         <div className="keyboard">
