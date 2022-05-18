@@ -1,7 +1,13 @@
 import Square from './Square';
 
 function Row(props) {
-  const { indexes, squares } = props;
+  const { id, level, indexes, squares } = props;
+
+  let status;
+  if (squares.length > 0 && id !== level) {
+    status = 'row--guess-entered';
+  }
+
   const tiles = indexes.map(index => {
     return <Square
             key={`Square${index}`}
@@ -12,7 +18,7 @@ function Row(props) {
   })
 
   return(
-    <div className="row">
+    <div className={`row ${status}`}>
       {tiles}
     </div>
   )

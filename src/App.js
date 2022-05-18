@@ -53,16 +53,18 @@ class App extends React.Component {
   handleKeyboard(e) {
     if (e.keyCode === 13 && this.state.string.length === 5) {
       const guess = this.state.string.join('');
-      if (guess === 'house') {
+
+      this.setState({
+        level: this.state.level + 1,
+        string: [],
+      })
+
+      console.log(guess);
+
+      if (guess === 'HOUSE') {
         console.log('winner');
       } else {
         console.log('loser');
-        this.setState({
-          level: this.state.level + 1,
-          string: [],
-        })
-
-        console.log(guess);
       }
     }
 
@@ -138,34 +140,46 @@ class App extends React.Component {
         </div>
         <div className="gameBoard">
           <Row
+            id={0}
             indexes={[0, 1, 2, 3, 4]}
             squares={this.state.firstGuess}
             wordle={wordle}
+            level={this.state.level}
           />
           <Row
+            id={1}
             indexes={[0, 1, 2, 3, 4]}
             squares={this.state.secondGuess}
             wordle={wordle}
+            level={this.state.level}
           />
           <Row
+            id={2}
             indexes={[0, 1, 2, 3, 4]}
             squares={this.state.thirdGuess}
             wordle={wordle}
+            level={this.state.level}
           />
           <Row
+            id={3}
             indexes={[0, 1, 2, 3, 4]}
             squares={this.state.fourthGuess}
             wordle={wordle}
+            level={this.state.level}
           />
           <Row
+            id={4}
             indexes={[0, 1, 2, 3, 4]}
             squares={this.state.fifthGuess}
             wordle={wordle}
+            level={this.state.level}
           />
           <Row
+            id={5}
             indexes={[0, 1, 2, 3, 4]}
             squares={this.state.sixthGuess}
             wordle={wordle}
+            level={this.state.level}
           />
         </div>
         <div className="keyboard">
