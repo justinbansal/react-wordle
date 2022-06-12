@@ -1,5 +1,7 @@
 import './App.scss';
 
+import words from './words';
+
 import React from 'react';
 import Row from './Row';
 import Modal from './Modal';
@@ -32,7 +34,50 @@ const letters = [
   'Z',
 ]
 
-const wordle = 'HOUSE';
+let wordle;
+let today;
+let date;
+
+function fetchWord() {
+  wordle = words[Math.floor(Math.random() * words.length)]
+  return wordle.toUpperCase();
+}
+
+function resetWord() {
+  wordle = fetchWord();
+  const today = new Date();
+  const date = today.getFullYear() + '-' + (today.getMonth()+1) + '-' + today.getDate();
+  const wordleData = {wordle, date}
+
+  window.localStorage.setItem('wordleData', `${JSON.stringify(wordleData)}`);
+}
+
+const getWordOfTheDay = () => {
+
+  const wordleData = window.localStorage.getItem('wordleData');
+
+  if (!wordleData) {
+    resetWord()
+  }
+
+  if (wordleData) {
+    let parsedData = JSON.parse(wordleData);
+
+    // Check date
+    const today = new Date();
+    const date = today.getFullYear() + '-' + (today.getMonth()+1) + '-' + today.getDate();
+
+    if (parsedData.date !== date) {
+      resetWord()
+    } else {
+      wordle = parsedData.wordle;
+    }
+  }
+}
+
+getWordOfTheDay();
+
+console.log(wordle);
 
 class App extends React.Component {
   constructor() {
@@ -99,7 +144,6 @@ class App extends React.Component {
         })
       }
     }
-
 
     if (e.keyCode === 13 && this.state.string.length < 5) {
       this.showModal();
