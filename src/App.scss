@@ -19,6 +19,18 @@ html {
   padding: 1rem;
   border-bottom: 2px solid #D3D3D3;
 
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .header__left,
+  .header__right {
+    a {
+      padding: 0.5rem;
+    }
+  }
+
   .header__left {
     margin-right: auto;
   }
