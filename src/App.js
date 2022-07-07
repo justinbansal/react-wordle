@@ -36,8 +36,6 @@ const letters = [
 ]
 
 let wordle;
-let today;
-let date;
 
 function fetchWord() {
   wordle = words[Math.floor(Math.random() * words.length)]
@@ -128,7 +126,7 @@ class App extends React.Component {
 
       console.log(guess);
 
-      if (guess === 'HOUSE') {
+      if (guess === wordle) {
         console.log('winner');
       } else {
         console.log('loser');
@@ -137,6 +135,11 @@ class App extends React.Component {
 
     if (letters.includes(e.key.toUpperCase())) {
       if (this.state.string.length < 5) {
+        // animate letters
+        console.log('hit');
+
+        // find box and animate it
+
         this.state.string.push(e.key.toUpperCase());
       }
 

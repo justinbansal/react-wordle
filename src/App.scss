@@ -59,6 +59,25 @@ html {
   border: 2px solid #D3D3D3;
   font-size: 3rem;
 
+  &--has-letter {
+    border-color: #000;
+    animation: has-letter 0.1s linear;
+
+    @keyframes has-letter {
+      0% {
+        transform: scale(1.0);
+      }
+
+      50% {
+        transform: scale(1.1);
+      }
+
+      100% {
+        transform: scale(1.0);
+      }
+    }
+  }
+
   .row--guess-entered & {
     &--correct-position {
       background-color: rgb(106, 170, 100);

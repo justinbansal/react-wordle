@@ -15,8 +15,10 @@ function Square(props) {
     status = 'square--no-match';
   }
 
+  let hasLetter = squares[position] ? 'square--has-letter' : null;
+
   return (
-    <div className={`square ${status}`}>
+    <div className={`square ${status} ${hasLetter}`}>
       {squares ? squares[position] : null}
     </div>
   )
