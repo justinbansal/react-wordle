@@ -53,14 +53,39 @@ html {
 }
 
 .square {
+  background-color: transparent;
   width: 4rem;
   height: 4rem;
   margin: 3px;
-  border: 2px solid #D3D3D3;
   font-size: 3rem;
+  perspective: 1000px;
+
+  .square-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+  }
+
+  .square-front,
+  .square-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+  }
+
+  .square-front {
+    border: 2px solid #D3D3D3;
+  }
+
+  .square-back {
+    transform: rotateX(180deg);
+  }
 
   &--has-letter {
-    border-color: #000;
     animation: has-letter 0.1s linear;
 
     @keyframes has-letter {
@@ -76,22 +101,36 @@ html {
         transform: scale(1.0);
       }
     }
+
+    .square-front {
+      border-color: #000;
+    }
+
+    .row--guess-entered & {
+      .square-inner {
+        transform: rotateX(180deg);
+      }
+    }
   }
 
   .row--guess-entered & {
-    &--correct-position {
+    &--correct-position .square-back {
       background-color: rgb(106, 170, 100);
       color: #fff;
     }
 
-    &--incorrect-position {
+    &--incorrect-position .square-back {
       background-color: rgb(201, 180, 88);
       color: #fff;
+      transition: background-color;
+      transition-delay: 0.2s;
     }
 
-    &--no-match {
+    &--no-match .square-back {
       background-color: rgb(120, 124, 126);
       color: #fff;
+      transition: background-color;
+      transition-delay: 0.2s;
     }
   }
 }
@@ -116,6 +155,7 @@ html {
   &--fade-out {
     opacity: 0;
     transition: all 0.5s;
+    pointer-events: none;
   }
 }
 

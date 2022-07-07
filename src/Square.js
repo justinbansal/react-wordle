@@ -17,9 +17,21 @@ function Square(props) {
 
   let hasLetter = squares[position] ? 'square--has-letter' : null;
 
+  let transitionDelay = ((position + 1) * 2 / 10) + 0.8 + 's';
+
   return (
     <div className={`square ${status} ${hasLetter}`}>
-      {squares ? squares[position] : null}
+      <div
+        className="square-inner"
+        style={{transitionDelay: `${transitionDelay}`}}
+      >
+        <div className="square-front">
+          {squares ? squares[position] : null}
+        </div>
+        <div className="square-back">
+          {squares ? squares[position] : null}
+        </div>
+      </div>
     </div>
   )
 }

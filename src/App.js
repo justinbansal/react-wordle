@@ -135,11 +135,6 @@ class App extends React.Component {
 
     if (letters.includes(e.key.toUpperCase())) {
       if (this.state.string.length < 5) {
-        // animate letters
-        console.log('hit');
-
-        // find box and animate it
-
         this.state.string.push(e.key.toUpperCase());
       }
 
